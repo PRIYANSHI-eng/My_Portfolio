@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-bg.jpg"
 
 export function HeroSection() {
   const [displayText, setDisplayText] = useState("")
-  const fullText = "Creative Full-Stack Developer & AI Innovator"
+  const fullText = "I build tech with heart."
   
   useEffect(() => {
     let i = 0
@@ -75,7 +75,7 @@ export function HeroSection() {
             transition={{ delay: 0.3 }}
             className="text-lg sm:text-xl text-muted-foreground mb-4"
           >
-            Hello, I'm Alex Thompson
+            Hello, I'm Sam Chen
           </motion.p>
 
           {/* Animated Title */}
@@ -97,8 +97,8 @@ export function HeroSection() {
             transition={{ delay: 1 }}
             className="text-xl sm:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            I transform ideas into powerful digital experiences using cutting-edge technology and AI. 
-            Specialized in full-stack development, machine learning, and innovative solutions.
+            From mental wellness to environmental care — one line of code at a time.
+            Building technology that heals our minds and protects our planet.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -113,9 +113,9 @@ export function HeroSection() {
               className="glow-primary hover:glow-secondary transition-all duration-300 text-lg px-8 py-6 group"
               asChild
             >
-              <a href="#contact">
+              <a href="#projects">
                 <Mail className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-                Get In Touch
+                View My Work
               </a>
             </Button>
             
@@ -137,10 +137,10 @@ export function HeroSection() {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
           >
             {[
-              { number: "50+", label: "Projects Completed" },
-              { number: "5+", label: "Years Experience" },
-              { number: "98%", label: "Client Satisfaction" },
-              { number: "24/7", label: "Support Available" },
+              { number: "1000+", label: "Lives Touched" },
+              { number: "3+", label: "Years Coding" },
+              { number: "100%", label: "Open Source" },
+              { number: "∞", label: "Passion for Purpose" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">
@@ -165,7 +165,7 @@ export function HeroSection() {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center text-muted-foreground hover:text-primary transition-colors"
           >
-            <span className="text-sm mb-2">Scroll Down</span>
+            <span className="text-sm mb-2">Explore My Journey</span>
             <ChevronDown className="h-6 w-6" />
           </motion.a>
         </motion.div>

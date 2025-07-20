@@ -2,46 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium Portfolio Design System - Bold & Modern */
+/* Nature-Inspired Portfolio Design System - Purposeful & Compassionate */
 
 @layer base {
   :root {
-    /* Light theme - Clean and minimal */
-    --background: 0 0% 98%;
-    --foreground: 222 84% 4.9%;
+    /* Light theme - Clean and natural */
+    --background: 47 15% 97%;
+    --foreground: 158 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 84% 4.9%;
+    --card-foreground: 158 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 4.9%;
+    --popover-foreground: 158 25% 15%;
 
-    --primary: 217 91% 60%;
+    --primary: 158 64% 52%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 47 25% 92%;
+    --secondary-foreground: 158 25% 25%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 47 25% 92%;
+    --muted-foreground: 158 15% 45%;
 
-    --accent: 188 100% 40%;
+    --accent: 200 95% 45%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 47 15% 85%;
+    --input: 47 15% 85%;
+    --ring: 158 64% 52%;
 
-    /* Portfolio specific colors */
-    --hero-gradient-start: 217 91% 60%;
-    --hero-gradient-end: 262 83% 58%;
-    --glow-primary: 217 91% 60%;
-    --glow-secondary: 188 100% 40%;
+    /* Nature-inspired portfolio colors */
+    --hero-gradient-start: 158 64% 52%;
+    --hero-gradient-end: 200 95% 45%;
+    --glow-primary: 158 64% 52%;
+    --glow-secondary: 200 95% 45%;
     --glass-bg: 0 0% 100%;
-    --glass-border: 214 32% 91%;
+    --glass-border: 47 15% 85%;
 
     --radius: 0.5rem;
 
@@ -63,42 +63,42 @@
   }
 
   .dark {
-    /* Dark theme - Bold and electric */
-    --background: 222 84% 4%;
-    --foreground: 210 40% 98%;
+    /* Dark theme - Earthy and calming */
+    --background: 158 25% 8%;
+    --foreground: 47 15% 95%;
 
-    --card: 222 84% 6%;
-    --card-foreground: 210 40% 98%;
+    --card: 158 25% 10%;
+    --card-foreground: 47 15% 95%;
 
-    --popover: 222 84% 6%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 158 25% 10%;
+    --popover-foreground: 47 15% 95%;
 
-    --primary: 217 91% 60%;
+    --primary: 158 64% 52%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 222 84% 8%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 158 25% 12%;
+    --secondary-foreground: 47 15% 95%;
 
-    --muted: 222 84% 8%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 158 25% 12%;
+    --muted-foreground: 158 15% 65%;
 
-    --accent: 188 100% 40%;
+    --accent: 200 95% 45%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 222 84% 11%;
-    --input: 222 84% 11%;
-    --ring: 217 91% 60%;
+    --border: 158 25% 18%;
+    --input: 158 25% 18%;
+    --ring: 158 64% 52%;
 
-    /* Dark theme portfolio colors */
-    --hero-gradient-start: 217 91% 60%;
-    --hero-gradient-end: 262 83% 58%;
-    --glow-primary: 217 91% 60%;
-    --glow-secondary: 188 100% 40%;
-    --glass-bg: 222 84% 6%;
-    --glass-border: 222 84% 11%;
+    /* Dark theme nature colors */
+    --hero-gradient-start: 158 64% 52%;
+    --hero-gradient-end: 200 95% 45%;
+    --glow-primary: 158 64% 52%;
+    --glow-secondary: 200 95% 45%;
+    --glass-bg: 158 25% 10%;
+    --glass-border: 158 25% 18%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
