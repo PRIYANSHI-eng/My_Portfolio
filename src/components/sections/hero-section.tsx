@@ -7,7 +7,7 @@ import heroImage from "/assets/hero-bg.jpg"
 export function HeroSection() {
   const [displayText, setDisplayText] = useState("")
   const fullText = "I build tech with heart."
-  
+
   useEffect(() => {
     let i = 0
     const timer = setInterval(() => {
@@ -18,7 +18,7 @@ export function HeroSection() {
         clearInterval(timer)
       }
     }, 100)
-    
+
     return () => clearInterval(timer)
   }, [])
 
@@ -118,14 +118,22 @@ export function HeroSection() {
                 View My Work
               </a>
             </Button>
-            
+
             <Button
               size="lg"
               variant="outline"
               className="text-lg px-8 py-6 group hover:bg-secondary/50"
+              asChild
             >
-              <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
-              Download Resume
+              <a
+                href="/Resume_Priyanshi.pdf"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
+                Download Resume
+              </a>
             </Button>
           </motion.div>
 
@@ -137,10 +145,10 @@ export function HeroSection() {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
           >
             {[
-                { number: "15+", label: "Projects Explored with Purpose" },
-  { number: "2 Years", label: "Into the Coding Journey" },
-  { number: "100%", label: "Learning by Doing" },
-  { number: "∞", label: "Love for Nature & Tech" },
+              { number: "15+", label: "Projects Explored with Purpose" },
+              { number: "2 Years", label: "Into the Coding Journey" },
+              { number: "100%", label: "Learning by Doing" },
+              { number: "∞", label: "Love for Nature & Tech" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">

@@ -8,38 +8,40 @@ import { Badge } from "@/components/ui/badge"
 const blogPosts = [
   {
     id: 1,
-    title: "Building Scalable AI Applications with Next.js and TensorFlow",
-    excerpt: "Learn how to integrate machine learning models into modern web applications for real-time predictions and intelligent user experiences.",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop",
-    category: "AI/ML",
-    readTime: "8 min read",
-    publishDate: "2024-01-15",
-    tags: ["Next.js", "TensorFlow", "AI", "JavaScript"],
+    title: "Why I Built CalmWave: Mental Health Meets Tech",
+    excerpt: "A behind-the-scenes look at the motivation, design, and challenges of building CalmWave – a wellness app crafted with empathy, purpose, and clean UI.",
+    image: "/assets/blog1.png",
+    category: "Personal Journey",
+    readTime: "5 min read",
+    publishDate: "2025-07-05",
+    tags: ["Mental Health", "CalmWave", "React", "Tailwind"],
     featured: true
   },
   {
     id: 2,
-    title: "The Future of Full-Stack Development: Trends to Watch in 2024",
-    excerpt: "Explore the emerging technologies and frameworks that are shaping the future of web development, from edge computing to AI-powered tools.",
-    image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=600&h=400&fit=crop",
-    category: "Development",
+    title: "Tech for Good: Coding with a Cause",
+    excerpt: "I believe in building more than just websites — I build solutions. Here's how I align my dev journey with nature, mental health, and purpose-driven tech.",
+    image: "/assets/blog2.png",
+    category: "Mindful Development",
     readTime: "6 min read",
-    publishDate: "2024-01-10",
-    tags: ["Web Development", "Trends", "Technology", "Innovation"],
+    publishDate: "2025-06-21",
+    tags: ["Impact", "Nature", "Wellness", "Purpose"],
     featured: true
   },
   {
     id: 3,
-    title: "Optimizing React Performance: Advanced Techniques and Best Practices",
-    excerpt: "Deep dive into React optimization strategies including memoization, code splitting, and rendering performance improvements.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
-    category: "React",
-    readTime: "12 min read",
-    publishDate: "2024-01-05",
-    tags: ["React", "Performance", "Optimization", "JavaScript"],
+    title: "A Developer’s Peace Toolkit: My Go-To Wellness Resources",
+    excerpt: "Burnout is real. These are the guided meditations, breathing exercises, and music playlists I turn to when I need to recenter and recharge.",
+    image: "assets/blog3.png",
+    category: "Self-Care",
+    readTime: "4 min read",
+    publishDate: "2025-06-01",
+    tags: ["Wellness", "Focus", "Mindfulness", "Routine"],
     featured: false
   }
 ]
+
+
 
 export function BlogSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
