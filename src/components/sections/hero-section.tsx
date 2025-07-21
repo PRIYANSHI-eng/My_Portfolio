@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { ChevronDown, Download, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import heroImage from "@/assets/hero-bg.jpg"
+import heroImage from "/assets/hero-bg.jpg"
 
 export function HeroSection() {
   const [displayText, setDisplayText] = useState("")
@@ -75,7 +75,7 @@ export function HeroSection() {
             transition={{ delay: 0.3 }}
             className="text-lg sm:text-xl text-muted-foreground mb-4"
           >
-            Hello, I'm Sam Chen
+            Hello, I'm Priyanshi Chittora
           </motion.p>
 
           {/* Animated Title */}
@@ -137,10 +137,10 @@ export function HeroSection() {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
           >
             {[
-              { number: "1000+", label: "Lives Touched" },
-              { number: "3+", label: "Years Coding" },
-              { number: "100%", label: "Open Source" },
-              { number: "∞", label: "Passion for Purpose" },
+                { number: "15+", label: "Projects Explored with Purpose" },
+  { number: "2 Years", label: "Into the Coding Journey" },
+  { number: "100%", label: "Learning by Doing" },
+  { number: "∞", label: "Love for Nature & Tech" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">

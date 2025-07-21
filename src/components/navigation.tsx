@@ -8,8 +8,7 @@ const navItems = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
-  { href: "#services", label: "Services" },
-  { href: "#testimonials", label: "Testimonials" },
+  
   { href: "#blog", label: "Blog" },
   { href: "#contact", label: "Contact" },
 ]
@@ -45,7 +44,7 @@ export function Navigation() {
             transition={{ delay: 0.1 }}
             className="flex-shrink-0"
           >
-            <h1 className="text-2xl font-bold text-gradient">Alex.Dev</h1>
+            <h1 className="text-2xl font-bold text-gradient">Priyanshi Chittora</h1>
           </motion.div>
 
           {/* Desktop Navigation */}

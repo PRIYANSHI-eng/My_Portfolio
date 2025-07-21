@@ -4,19 +4,29 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 
 const skills = [
-  { name: "React & Next.js", level: 95 },
-  { name: "Node.js & Express", level: 90 },
-  { name: "Python & Django", level: 88 },
-  { name: "Machine Learning", level: 85 },
-  { name: "AWS & Cloud", level: 92 },
-  { name: "TypeScript", level: 93 },
-]
+  { name: "React.js", level: 80 },
+  { name: "JavaScript (ES6+)", level: 75 },
+  { name: "Node.js & Express", level: 70 },
+  { name: "Python", level: 65 },
+  { name: "Java", level: 60 },
+  { name: "TypeScript", level: 60 }, // still developing
+  { name: "MongoDB", level: 65 },
+  { name: "Tailwind CSS", level: 80 },
+  { name: "Git & GitHub", level: 85 },
+];
+
 
 const technologies = [
-  "React", "Next.js", "TypeScript", "Node.js", "Python", "Django", 
-  "PostgreSQL", "MongoDB", "AWS", "Docker", "Kubernetes", "TensorFlow",
-  "PyTorch", "OpenAI API", "Tailwind CSS", "GraphQL", "Redis", "Elasticsearch"
-]
+  "React.js",
+  "Tailwind CSS",
+  "JavaScript (ES6+)",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
+  "OpenAI API",
+  "Git & GitHub"
+];
+
 
 export function AboutSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -49,24 +59,19 @@ export function AboutSection() {
                 <div className="flex flex-col md:flex-row items-start gap-6">
                   <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center">
                     <div className="w-28 h-28 rounded-full bg-background flex items-center justify-center text-4xl font-bold text-primary">
-                      AT
+                      PC
                     </div>
                   </div>
                   
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-4">Alex Thompson</h3>
+                    <h3 className="text-2xl font-bold mb-4">Priyanshi Chittora</h3>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      Passionate full-stack developer with 5+ years of experience crafting digital solutions 
-                      that make a difference. I specialize in building scalable web applications, AI-powered 
-                      systems, and innovative user experiences. My journey spans from startup environments 
-                      to enterprise-level projects.
-                    </p>
-                    
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      When I'm not coding, you'll find me exploring the latest AI technologies, contributing 
-                      to open-source projects, or mentoring aspiring developers. I believe in the power of 
-                      technology to solve real-world problems and create meaningful impact.
-                    </p>
+  I'm a passionate second-year Computer Science student driven by curiosity and purpose. I love building web apps that are not only functional but also meaningful. My recent project, <strong>CalmWave</strong>, is a therapy-focused app built with React, Tailwind, and AI integration — designed to improve mental well-being.
+</p>
+
+<p className="text-muted-foreground leading-relaxed mb-6">
+  I'm deeply interested in the intersection of technology, nature, and human emotion. Whether it's experimenting with AI tools, learning new frameworks, or supporting social impact through code, I’m always exploring how tech can be a force for good. Currently, I'm honing my full-stack skills and contributing to open source whenever I can.
+</p>
 
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary">🎯 Problem Solver</Badge>
@@ -134,10 +139,11 @@ export function AboutSection() {
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Lines of Code", value: "100K+" },
-                { label: "Coffee Cups", value: "∞" },
-                { label: "Happy Clients", value: "50+" },
-                { label: "GitHub Stars", value: "1.2K+" },
+{ label: "Lines of Code", value: "Still Counting..." },
+{ label: "Cups of Chai", value: "200+" },
+{ label: "Projects Built", value: "1 Passion Project" },
+{ label: "GitHub Commits", value: "500+" }
+
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}

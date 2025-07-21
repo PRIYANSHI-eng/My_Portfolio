@@ -112,7 +112,7 @@ export function VisionSection() {
                 </div>
                 <h4 className="font-semibold">Mental Wellness</h4>
                 <p className="text-sm text-muted-foreground">
-                  CalmWave - Supporting 1000+ users with mindfulness and mood tracking
+                  CalmWave - Supporting users with mindfulness and mood tracking
                 </p>
               </div>
               
@@ -122,7 +122,7 @@ export function VisionSection() {
                 </div>
                 <h4 className="font-semibold">Environmental Impact</h4>
                 <p className="text-sm text-muted-foreground">
-                  EcoTracker - Coming 2024 to help reduce carbon footprints globally
+                  EcoTracker - Coming soon to help reduce carbon footprints globally
                 </p>
               </div>
               

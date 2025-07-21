@@ -9,73 +9,28 @@ import { Badge } from "@/components/ui/badge"
 const projects = [
   {
     id: 1,
-    title: "AI-Powered E-Commerce Platform",
-    description: "A modern e-commerce solution with AI-driven product recommendations, real-time inventory management, and advanced analytics dashboard.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-    technologies: ["React", "Node.js", "TensorFlow", "MongoDB", "AWS"],
+    title: "CalmWave",
+    description: "A mental wellness web app offering relaxing music and guided meditation. Built to support users' emotional health with a calming, minimal interface.",
+    image: "/assets/calmwave-preview.png", // Replace with your screenshot
+    technologies: ["React", "Tailwind CSS", "JavaScript", "OpenAI API"],
     category: "Full-Stack",
-    github: "https://github.com",
-    live: "https://demo.com",
+    github: "https://github.com/kalviumcommunity/S63_Priyanshi_Capstone_CalmWave",
+    live: "https://deluxe-pony-f64836.netlify.app/",
     featured: true
   },
   {
     id: 2,
-    title: "Smart Finance Dashboard",
-    description: "Real-time financial analytics platform with machine learning insights, automated reporting, and portfolio optimization.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    technologies: ["Next.js", "Python", "PostgreSQL", "D3.js", "Docker"],
-    category: "AI/ML",
-    github: "https://github.com",
-    live: "https://demo.com",
+    title: "Portfolio Website",
+    description: "Personal portfolio to showcase my projects, skills, and journey as a developer focused on using tech for good — especially nature and animal welfare.",
+    image: "/assets/portfolio-preview.png", // Replace with real image
+    technologies: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+    category: "Full-Stack",
+    github: "https://github.com/PRIYANSHI-eng/My_Portfolio",
+    live: "https://priyanshi.vercel.app",
     featured: true
   },
-  {
-    id: 3,
-    title: "Social Media Analytics Tool",
-    description: "Comprehensive social media monitoring and analytics platform with sentiment analysis and trend prediction.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-    technologies: ["Vue.js", "Django", "Redis", "Elasticsearch", "Chart.js"],
-    category: "Frontend",
-    github: "https://github.com",
-    live: "https://demo.com",
-    featured: false
-  },
-  {
-    id: 4,
-    title: "IoT Device Management System",
-    description: "Enterprise-grade IoT platform for device monitoring, data collection, and automated control systems.",
-    image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=600&h=400&fit=crop",
-    technologies: ["React", "Express.js", "MQTT", "InfluxDB", "Kubernetes"],
-    category: "Backend",
-    github: "https://github.com",
-    live: "https://demo.com",
-    featured: false
-  },
-  {
-    id: 5,
-    title: "AI Chat Assistant",
-    description: "Intelligent conversational AI with natural language processing, context awareness, and multi-language support.",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop",
-    technologies: ["Python", "OpenAI API", "FastAPI", "WebSocket", "Docker"],
-    category: "AI/ML",
-    github: "https://github.com",
-    live: "https://demo.com",
-    featured: true
-  },
-  {
-    id: 6,
-    title: "Blockchain Voting System",
-    description: "Secure, transparent voting platform using blockchain technology with smart contracts and voter verification.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
-    technologies: ["Solidity", "Web3.js", "React", "Ethereum", "IPFS"],
-    category: "Blockchain",
-    github: "https://github.com",
-    live: "https://demo.com",
-    featured: false
-  }
 ]
-
-const categories = ["All", "Full-Stack", "Frontend", "Backend", "AI/ML", "Blockchain"]
+const categories = ["All", "Full-Stack", "Frontend", "Backend"]
 
 export function ProjectsSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -207,16 +162,23 @@ export function ProjectsSection() {
 
         {/* View More Button */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-12"
-        >
-          <Button variant="outline" size="lg" className="group">
-            <Github className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-            View More on GitHub
-          </Button>
-        </motion.div>
+  initial={{ opacity: 0, y: 30 }}
+  animate={inView ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.8, delay: 0.8 }}
+  className="text-center mt-12"
+>
+  <Button variant="outline" size="lg" className="group" asChild>
+    <a
+      href="https://github.com/PRIYANSHI-eng?tab=repositories"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Github className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+      View More on GitHub
+    </a>
+  </Button>
+</motion.div>
+
       </div>
     </section>
   )
