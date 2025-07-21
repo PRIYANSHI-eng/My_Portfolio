@@ -26,7 +26,7 @@ const projects = [
     technologies: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
     category: "Full-Stack",
     github: "https://github.com/PRIYANSHI-eng/My_Portfolio",
-    live: "https://priyanshi.vercel.app",
+    live: "https://my-portfolio-inky-nine-91.vercel.app/",
     featured: true
   },
 ]
