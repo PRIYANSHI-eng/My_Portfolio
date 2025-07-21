@@ -66,7 +66,7 @@ export function AboutSection() {
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold mb-4">Priyanshi Chittora</h3>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-  I'm a passionate second-year Computer Science student driven by curiosity and purpose. I love building web apps that are not only functional but also meaningful. My recent project, <strong>CalmWave</strong>, is a therapy-focused app built with React, Tailwind, and AI integration — designed to improve mental well-being.
+  I'm a passionate second-year Computer Science student driven by curiosity and purpose. I love building web apps that are not only functional but also meaningful. My recent project, <strong>CalmWave</strong>, is a therapy-focused app built with React, Tailwind, and AI integration ,designed to improve mental well-being.
 </p>
 
 <p className="text-muted-foreground leading-relaxed mb-6">

@@ -97,7 +97,7 @@ export function HeroSection() {
             transition={{ delay: 1 }}
             className="text-xl sm:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            From mental wellness to environmental care — one line of code at a time.
+            From mental wellness to environmental care , one line of code at a time.
             Building technology that heals our minds and protects our planet.
           </motion.p>
 
@@ -145,10 +145,11 @@ export function HeroSection() {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
           >
             {[
-              { number: "15+", label: "Projects Explored with Purpose" },
+              
               { number: "2 Years", label: "Into the Coding Journey" },
               { number: "100%", label: "Learning by Doing" },
               { number: "∞", label: "Love for Nature & Tech" },
+              { number: "4", label: "Tech Stacks Explored Deeply" }
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">
