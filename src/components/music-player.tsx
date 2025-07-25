@@ -11,6 +11,9 @@ export function MusicPlayer() {
     const audio = audioRef.current
     if (!audio) return
 
+    // Set initial volume
+    audio.volume = 0.5
+    
     audio.addEventListener('ended', () => setIsPlaying(false))
 
     return () => {
@@ -18,16 +21,33 @@ export function MusicPlayer() {
     }
   }, [])
 
-  const togglePlay = () => {
+  const togglePlay = async () => {
     const audio = audioRef.current
     if (!audio) return
 
-    if (isPlaying) {
-      audio.pause()
-    } else {
-      audio.play()
+    try {
+      if (isPlaying) {
+        audio.pause()
+        setIsPlaying(false)
+      } else {
+        // Set volume to ensure it's audible
+        audio.volume = 0.5
+        await audio.play()
+        setIsPlaying(true)
+      }
+    } catch (error) {
+      console.error('Audio play failed:', error)
+      // Fallback: try a different audio source
+      if (audio.src.includes('pixabay')) {
+        audio.src = "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+        try {
+          await audio.play()
+          setIsPlaying(true)
+        } catch (e) {
+          console.error('Fallback audio also failed:', e)
+        }
+      }
     }
-    setIsPlaying(!isPlaying)
   }
 
   return (
@@ -114,8 +134,9 @@ export function MusicPlayer() {
       <audio
         ref={audioRef}
         loop
-        preload="metadata"
-        src="https://cdn.pixabay.com/audio/2023/06/05/audio_af7cc91534.mp3"
+        preload="auto"
+        src="https://www.bensound.com/bensound-music/bensound-relaxing.mp3"
+        crossOrigin="anonymous"
       />
     </div>
   )
