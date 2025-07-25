@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { Navigation } from "@/components/navigation"
-import { MusicPlayer } from "@/components/music-player"
 import { HeroSection } from "@/components/sections/hero-section"
 import { AboutSection } from "@/components/sections/about-section"
 import { ProjectsSection } from "@/components/sections/projects-section"
@@ -39,7 +38,6 @@ const Index = () => {
       <BlogSection />
       <ContactSection />
       <Footer />
-      <MusicPlayer />
     </div>
   );
 };

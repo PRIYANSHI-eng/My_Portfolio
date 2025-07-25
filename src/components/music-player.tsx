@@ -1,28 +1,19 @@
 import { useState, useRef, useEffect } from "react"
-import { Play, Pause, Volume2 } from "lucide-react"
+import { Play, Pause, Music } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
-    const updateTime = () => setCurrentTime(audio.currentTime)
-    const updateDuration = () => setDuration(audio.duration)
-
-    audio.addEventListener('timeupdate', updateTime)
-    audio.addEventListener('loadedmetadata', updateDuration)
     audio.addEventListener('ended', () => setIsPlaying(false))
 
     return () => {
-      audio.removeEventListener('timeupdate', updateTime)
-      audio.removeEventListener('loadedmetadata', updateDuration)
       audio.removeEventListener('ended', () => setIsPlaying(false))
     }
   }, [])
@@ -39,89 +30,93 @@ export function MusicPlayer() {
     setIsPlaying(!isPlaying)
   }
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60)
-    const seconds = Math.floor(time % 60)
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`
-  }
-
-  const progressPercentage = duration ? (currentTime / duration) * 100 : 0
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="fixed bottom-6 right-6 z-50"
-    >
-      <div className="glass-card backdrop-blur-xl border border-primary/20 rounded-full p-4 shadow-lg">
-        <div className="flex items-center space-x-3">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={togglePlay}
-            className="rounded-full bg-primary/10 hover:bg-primary/20 transition-all duration-300"
-          >
-            <AnimatePresence mode="wait">
-              {isPlaying ? (
-                <motion.div
-                  key="pause"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Pause className="h-5 w-5 text-primary" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="play"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Play className="h-5 w-5 text-primary ml-0.5" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </Button>
+    <div className="flex items-center space-x-2">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={togglePlay}
+        className="relative h-9 w-9 hover:bg-secondary/50 transition-all duration-300"
+        title={isPlaying ? "Pause relaxing music" : "Play relaxing music"}
+      >
+        <AnimatePresence mode="wait">
+          {isPlaying ? (
+            <motion.div
+              key="pause"
+              initial={{ scale: 0, rotate: -90 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0, rotate: 90 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Pause className="h-4 w-4 text-primary" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="play"
+              initial={{ scale: 0, rotate: -90 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0, rotate: 90 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Play className="h-4 w-4 text-primary ml-0.5" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
+        {/* Animated music wave indicator */}
+        <AnimatePresence>
+          {isPlaying && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute -bottom-1 left-1/2 transform -translate-x-1/2"
+            >
+              <div className="flex space-x-0.5">
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    className="w-0.5 bg-primary rounded-full"
+                    animate={{
+                      height: [2, 8, 2],
+                      opacity: [0.3, 1, 0.3]
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                      ease: "easeInOut"
+                    }}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </Button>
 
-          <AnimatePresence>
-            {isPlaying && (
-              <motion.div
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: "auto", opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                className="flex items-center space-x-3 overflow-hidden"
-              >
-                <Volume2 className="h-4 w-4 text-muted-foreground" />
-                <div className="flex flex-col">
-                  <span className="text-xs text-muted-foreground">Peaceful Nature</span>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-xs text-muted-foreground">{formatTime(currentTime)}</span>
-                    <div className="w-20 h-1 bg-muted rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-primary rounded-full"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${progressPercentage}%` }}
-                        transition={{ duration: 0.1 }}
-                      />
-                    </div>
-                    <span className="text-xs text-muted-foreground">{formatTime(duration)}</span>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
+      <AnimatePresence>
+        {isPlaying && (
+          <motion.div
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: "auto", opacity: 1 }}
+            exit={{ width: 0, opacity: 0 }}
+            className="hidden sm:flex items-center space-x-2 overflow-hidden"
+          >
+            <Music className="h-3 w-3 text-muted-foreground" />
+            <span className="text-xs text-muted-foreground whitespace-nowrap">
+              Peaceful Forest
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <audio
         ref={audioRef}
         loop
         preload="metadata"
-        src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3"
+        src="https://cdn.pixabay.com/audio/2023/06/05/audio_af7cc91534.mp3"
       />
-    </motion.div>
+    </div>
   )
 }

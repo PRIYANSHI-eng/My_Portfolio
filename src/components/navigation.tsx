@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { MusicPlayer } from "@/components/music-player"
 import { motion, AnimatePresence } from "framer-motion"
 
 const navItems = [
@@ -66,8 +67,9 @@ export function Navigation() {
             </div>
           </div>
 
-          {/* Theme Toggle & Mobile Menu Button */}
+          {/* Music Player, Theme Toggle & Mobile Menu Button */}
           <div className="flex items-center space-x-2">
+            <MusicPlayer />
             <ThemeToggle />
             <div className="md:hidden">
               <Button
