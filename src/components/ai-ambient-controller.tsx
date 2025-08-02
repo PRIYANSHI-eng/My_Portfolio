@@ -17,28 +17,28 @@ const ambientTracks: AmbientTrack[] = [
   {
     id: 'focus',
     name: 'Deep Focus',
-    url: 'https://www.bensound.com/bensound-music/bensound-slowmotion.mp3',
+    url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/soundtrack.mp3',
     mood: 'productive',
     description: 'AI suggests: Perfect for coding and deep work'
   },
   {
     id: 'creative',
     name: 'Creative Flow',
-    url: 'https://www.bensound.com/bensound-music/bensound-inspire.mp3',
+    url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/menu.ogg',
     mood: 'inspirational',
     description: 'AI suggests: Enhances creative thinking'
   },
   {
     id: 'calm',
     name: 'Mindful Peace',
-    url: 'https://www.bensound.com/bensound-music/bensound-relaxing.mp3',
+    url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a',
     mood: 'peaceful',
     description: 'AI suggests: Reduces stress and promotes wellness'
   },
   {
     id: 'nature',
     name: 'Forest Therapy',
-    url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+    url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/fx/engine-3.ogg',
     mood: 'natural',
     description: 'AI suggests: Connects you with nature'
   }
