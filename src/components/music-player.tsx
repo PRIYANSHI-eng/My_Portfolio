@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react'
 import { Play, Pause, Volume2, Brain } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -225,7 +224,6 @@ export function MusicPlayer({ currentSection = 'home' }: MusicPlayerProps) {
           )}
         </AnimatePresence>
       </div>
-
     </div>
   )
 }
