@@ -30,30 +30,63 @@ class AmbientSoundGenerator {
     this.stop()
 
     const sounds = {
-      focus: [220, 330, 440], // Low frequency tones for focus
-      creative: [261.63, 329.63, 392], // C major chord for creativity  
-      calm: [174, 258, 348], // Very low, calming frequencies
-      nature: [110, 165, 220] // Deep earth tones
+      focus: {
+        frequencies: [220, 293.66, 369.99, 440], // A minor pentatonic - soothing for focus
+        waveType: 'sine' as OscillatorType,
+        volume: 0.04
+      },
+      creative: {
+        frequencies: [261.63, 329.63, 392, 523.25], // C major chord progression - uplifting
+        waveType: 'triangle' as OscillatorType,
+        volume: 0.05
+      },
+      calm: {
+        frequencies: [130.81, 174.61, 220, 261.63], // Very low, meditative frequencies
+        waveType: 'sine' as OscillatorType,
+        volume: 0.03
+      },
+      nature: {
+        frequencies: [110, 146.83, 196, 246.94], // Earth tones with slight variation
+        waveType: 'sawtooth' as OscillatorType,
+        volume: 0.035
+      }
     }
 
-    const frequencies = sounds[type as keyof typeof sounds] || sounds.calm
+    const soundConfig = sounds[type as keyof typeof sounds] || sounds.calm
 
-    frequencies.forEach((freq, index) => {
+    soundConfig.frequencies.forEach((freq, index) => {
       const oscillator = this.audioContext!.createOscillator()
       const gainNode = this.audioContext!.createGain()
+      const filterNode = this.audioContext!.createBiquadFilter()
       
-      oscillator.type = 'sine'
+      oscillator.type = soundConfig.waveType
       oscillator.frequency.setValueAtTime(freq, this.audioContext!.currentTime)
       
-      gainNode.gain.setValueAtTime(0, this.audioContext!.currentTime)
-      gainNode.gain.linearRampToValueAtTime(0.03 + (index * 0.01), this.audioContext!.currentTime + 1)
+      // Add subtle frequency modulation for more organic sound
+      const lfo = this.audioContext!.createOscillator()
+      const lfoGain = this.audioContext!.createGain()
+      lfo.frequency.setValueAtTime(0.5 + (index * 0.1), this.audioContext!.currentTime)
+      lfoGain.gain.setValueAtTime(2, this.audioContext!.currentTime)
+      lfo.connect(lfoGain)
+      lfoGain.connect(oscillator.frequency)
+      lfo.start()
       
-      oscillator.connect(gainNode)
+      // Low-pass filter for warmth
+      filterNode.type = 'lowpass'
+      filterNode.frequency.setValueAtTime(800 + (index * 200), this.audioContext!.currentTime)
+      filterNode.Q.setValueAtTime(1, this.audioContext!.currentTime)
+      
+      gainNode.gain.setValueAtTime(0, this.audioContext!.currentTime)
+      gainNode.gain.linearRampToValueAtTime(soundConfig.volume, this.audioContext!.currentTime + 2)
+      
+      oscillator.connect(filterNode)
+      filterNode.connect(gainNode)
       gainNode.connect(this.audioContext!.destination)
       
       oscillator.start()
       
       this.oscillators.push(oscillator)
+      this.oscillators.push(lfo)
       this.gainNodes.push(gainNode)
     })
 
