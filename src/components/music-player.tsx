@@ -9,56 +9,94 @@ interface MusicPlayerProps {
   currentSection?: string
 }
 
+// Web Audio API for synthetic ambient sounds
+class AmbientSoundGenerator {
+  private audioContext: AudioContext | null = null
+  private oscillators: OscillatorNode[] = []
+  private gainNodes: GainNode[] = []
+  private isPlaying = false
+
+  async init() {
+    if (!this.audioContext) {
+      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    }
+    if (this.audioContext.state === 'suspended') {
+      await this.audioContext.resume()
+    }
+  }
+
+  createAmbientSound(type: string) {
+    if (!this.audioContext) return
+
+    this.stop()
+
+    const sounds = {
+      focus: [220, 330, 440], // Low frequency tones for focus
+      creative: [261.63, 329.63, 392], // C major chord for creativity  
+      calm: [174, 258, 348], // Very low, calming frequencies
+      nature: [110, 165, 220] // Deep earth tones
+    }
+
+    const frequencies = sounds[type as keyof typeof sounds] || sounds.calm
+
+    frequencies.forEach((freq, index) => {
+      const oscillator = this.audioContext!.createOscillator()
+      const gainNode = this.audioContext!.createGain()
+      
+      oscillator.type = 'sine'
+      oscillator.frequency.setValueAtTime(freq, this.audioContext!.currentTime)
+      
+      gainNode.gain.setValueAtTime(0, this.audioContext!.currentTime)
+      gainNode.gain.linearRampToValueAtTime(0.03 + (index * 0.01), this.audioContext!.currentTime + 1)
+      
+      oscillator.connect(gainNode)
+      gainNode.connect(this.audioContext!.destination)
+      
+      oscillator.start()
+      
+      this.oscillators.push(oscillator)
+      this.gainNodes.push(gainNode)
+    })
+
+    this.isPlaying = true
+  }
+
+  stop() {
+    this.oscillators.forEach(osc => {
+      try { osc.stop() } catch (e) {}
+    })
+    this.oscillators = []
+    this.gainNodes = []
+    this.isPlaying = false
+  }
+
+  getIsPlaying() {
+    return this.isPlaying
+  }
+}
+
 export function MusicPlayer({ currentSection = 'home' }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTrack, setCurrentTrack] = useState<AmbientTrack | null>(null)
-  const [showAiController, setShowAiController] = useState(false)
-  const audioRef = useRef<HTMLAudioElement>(null)
+  const soundGenerator = useRef<AmbientSoundGenerator>(new AmbientSoundGenerator())
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    audio.volume = 0.3
-    
-    audio.addEventListener('ended', () => setIsPlaying(false))
-    audio.addEventListener('loadstart', () => console.log('Audio loading...'))
-    audio.addEventListener('canplaythrough', () => console.log('Audio ready to play'))
-
     // Set initial track
     if (!currentTrack) {
       setCurrentTrack(ambientTracks[2]) // Default to calm track
     }
-
-    return () => {
-      audio.removeEventListener('ended', () => setIsPlaying(false))
-    }
-  }, [currentTrack])
-
-  // Update audio source when track changes
-  useEffect(() => {
-    const audio = audioRef.current
-    if (audio && currentTrack) {
-      const wasPlaying = isPlaying
-      audio.src = currentTrack.url
-      
-      if (wasPlaying) {
-        audio.play().then(() => setIsPlaying(true)).catch(console.error)
-      }
-    }
   }, [currentTrack])
 
   const togglePlay = async () => {
-    const audio = audioRef.current
-    if (!audio || !currentTrack) return
+    if (!currentTrack) return
 
     try {
       if (isPlaying) {
-        audio.pause()
+        soundGenerator.current.stop()
         setIsPlaying(false)
       } else {
-        audio.volume = 0.3
-        await audio.play()
+        await soundGenerator.current.init()
+        soundGenerator.current.createAmbientSound(currentTrack.id)
         setIsPlaying(true)
       }
     } catch (error) {
@@ -67,7 +105,17 @@ export function MusicPlayer({ currentSection = 'home' }: MusicPlayerProps) {
   }
 
   const handleTrackChange = (track: AmbientTrack) => {
+    const wasPlaying = isPlaying
     setCurrentTrack(track)
+    
+    if (wasPlaying) {
+      soundGenerator.current.stop()
+      setTimeout(async () => {
+        await soundGenerator.current.init()
+        soundGenerator.current.createAmbientSound(track.id)
+      }, 100)
+    }
+    
     console.log('AI suggested track change:', track.name)
   }
 
@@ -84,7 +132,6 @@ export function MusicPlayer({ currentSection = 'home' }: MusicPlayerProps) {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => setShowAiController(!showAiController)}
         className="relative p-2 hover:bg-primary/10 group"
         title="AI Ambient Intelligence"
       >
@@ -179,13 +226,6 @@ export function MusicPlayer({ currentSection = 'home' }: MusicPlayerProps) {
         </AnimatePresence>
       </div>
 
-      {/* Audio Element */}
-      <audio
-        ref={audioRef}
-        loop
-        preload="auto"
-        crossOrigin="anonymous"
-      />
     </div>
   )
 }
