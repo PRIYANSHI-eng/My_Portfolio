@@ -57,10 +57,12 @@ export function AboutSection() {
             <Card className="glass-card">
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row items-start gap-6">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center">
-                    <div className="w-28 h-28 rounded-full bg-background flex items-center justify-center text-4xl font-bold text-primary">
-                      PC
-                    </div>
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center p-1">
+                    <img 
+                      src="/lovable-uploads/741d9cf0-35b9-4431-9725-bbdee70c1c6e.png" 
+                      alt="Priyanshi Chittora - Profile Picture"
+                      className="w-full h-full rounded-full object-cover"
+                    />
                   </div>
                   
                   <div className="flex-1">
