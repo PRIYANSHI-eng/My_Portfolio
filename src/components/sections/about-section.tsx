@@ -57,16 +57,20 @@ export function AboutSection() {
             <Card className="glass-card">
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row items-start gap-6">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center p-1">
-                    <img 
-                      src="/lovable-uploads/741d9cf0-35b9-4431-9725-bbdee70c1c6e.png" 
-                      alt="Priyanshi Chittora - Profile Picture"
-                      className="w-full h-full rounded-full object-cover"
-                    />
+                  <div className="relative group">
+                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary via-accent to-primary animate-pulse flex-shrink-0 flex items-center justify-center p-1">
+                      <img 
+                        src="/lovable-uploads/741d9cf0-35b9-4431-9725-bbdee70c1c6e.png" 
+                        alt="Priyanshi Chittora - Profile Picture"
+                        className="w-full h-full rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-4">Priyanshi Chittora</h3>
+                    <h3 className="text-2xl font-bold mb-2">Priyanshi Chittora</h3>
+                    <p className="text-primary font-medium mb-4">Full Stack Developer & CS Student</p>
                     <p className="text-muted-foreground leading-relaxed mb-6">
   I'm a passionate second-year Computer Science student driven by curiosity and purpose. I love building web apps that are not only functional but also meaningful. My recent project, <strong>CalmWave</strong>, is a therapy-focused app built with React, Tailwind, and AI integration ,designed to improve mental well-being.
 </p>
@@ -76,9 +80,9 @@ export function AboutSection() {
 </p>
 
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary">🎯 Problem Solver</Badge>
-                      <Badge variant="secondary">🚀 Innovation Focused</Badge>
-                      <Badge variant="secondary">🌟 Team Player</Badge>
+                      <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">🎯 Problem Solver</Badge>
+                      <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20 hover:bg-accent/20">🚀 Innovation Focused</Badge>
+                      <Badge variant="secondary" className="bg-secondary text-secondary-foreground hover:bg-secondary/80">🌟 Team Player</Badge>
                     </div>
                   </div>
                 </div>
@@ -127,9 +131,9 @@ export function AboutSection() {
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.3, delay: 0.8 + index * 0.05 }}
                   >
-                    <Badge 
+                     <Badge 
                       variant="outline" 
-                      className="hover:bg-primary hover:text-primary-foreground transition-colors duration-200 cursor-default"
+                      className="hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 cursor-default hover:shadow-lg hover:scale-105"
                     >
                       {tech}
                     </Badge>
@@ -152,7 +156,7 @@ export function AboutSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                  className="text-center p-4 glass-card rounded-lg"
+                  className="text-center p-4 glass-card rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 border border-primary/10"
                 >
                   <div className="text-2xl font-bold text-primary mb-1">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
