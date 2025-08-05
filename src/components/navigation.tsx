@@ -70,43 +70,54 @@ export function Navigation() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/80 backdrop-blur-md shadow-lg border-b border-border/50"
-          : "bg-transparent"
+          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50"
+          : "bg-background/90 backdrop-blur-sm"
       )}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <motion.div
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 sm:space-x-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
-              <span className="text-sm font-bold text-white">PC</span>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
+              <span className="text-sm sm:text-base font-bold text-white">PC</span>
             </div>
-            <span className="text-lg font-display font-bold">
+            <span className="text-base sm:text-lg lg:text-xl font-display font-bold hidden sm:block">
               Priyanshi Chittora
+            </span>
+            <span className="text-sm font-display font-bold block sm:hidden">
+              PC
             </span>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <motion.a
                 key={item.href}
                 href={item.href}
                 onClick={scrollToSection}
-                className="relative text-sm font-medium hover:text-primary transition-colors duration-200 group"
+                className={cn(
+                  "relative text-sm xl:text-base font-medium transition-colors duration-200 group",
+                  currentSection === item.href.slice(1) 
+                    ? "text-primary" 
+                    : "text-foreground hover:text-primary"
+                )}
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
               >
                 {item.label}
                 <motion.span
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"
+                  className={cn(
+                    "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300",
+                    currentSection === item.href.slice(1) ? "w-full" : "w-0 group-hover:w-full"
+                  )}
                   layoutId="navUnderline"
                 />
               </motion.a>
@@ -114,15 +125,17 @@ export function Navigation() {
           </div>
 
           {/* Right side actions */}
-          <div className="flex items-center space-x-4">
-            {/* Music Player with AI */}
-            <MusicPlayer currentSection={currentSection} />
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            {/* Music Player with AI - Hidden on small screens */}
+            <div className="hidden sm:block">
+              <MusicPlayer currentSection={currentSection} />
+            </div>
 
             {/* Theme Toggle */}
             <ThemeToggle />
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Button
                 variant="ghost"
                 size="sm"
@@ -152,15 +165,20 @@ export function Navigation() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden overflow-hidden bg-background/95 backdrop-blur-sm rounded-lg mt-2 shadow-lg border border-border/50"
+              className="lg:hidden overflow-hidden bg-background/98 backdrop-blur-md rounded-lg mt-2 mx-4 shadow-xl border border-border/50"
             >
-              <div className="px-4 py-6 space-y-4">
+              <div className="px-6 py-6 space-y-4">
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.href}
                     href={item.href}
                     onClick={scrollToSection}
-                    className="block text-sm font-medium hover:text-primary transition-colors duration-200 py-2"
+                    className={cn(
+                      "block text-base font-medium transition-colors duration-200 py-3 px-4 rounded-lg",
+                      currentSection === item.href.slice(1)
+                        ? "bg-primary/10 text-primary border-l-2 border-primary"
+                        : "hover:text-primary hover:bg-primary/5"
+                    )}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -168,6 +186,11 @@ export function Navigation() {
                     {item.label}
                   </motion.a>
                 ))}
+                
+                {/* Mobile Music Player */}
+                <div className="pt-4 border-t border-border/30">
+                  <MusicPlayer currentSection={currentSection} />
+                </div>
               </div>
             </motion.div>
           )}
